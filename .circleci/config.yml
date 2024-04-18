@@ -1,0 +1,23 @@
+---
+version: 2.1
+
+workflows:
+  build-workflow:
+    jobs:
+      - build-from-source
+
+jobs:
+  build-from-source:
+    machine: true
+    resource_class: bluebird-labs/c7g2xlarge
+    steps:
+      - checkout
+      - run:
+          name: Generate the JNI interface header
+          command: |
+            export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+            export JDK_HOME=$JAVA_HOME
+            ./build.sh
+      - store_artifacts:
+          path: dist
+          destination: dist

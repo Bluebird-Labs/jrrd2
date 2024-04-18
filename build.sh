@@ -1,4 +1,5 @@
 #!/bin/bash
+PATH=$PATH:/opt/maven/bin
 
 if [ ! -e build.sh ]; then
   echo "build.sh must be ran from the root of the project."
